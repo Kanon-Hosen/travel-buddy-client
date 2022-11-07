@@ -19,11 +19,11 @@ const Services = () => {
                 {
                     services.map(service => {
                         return (
-                            <div key={service._id} className='p-4'>  
-                                <img className='w-full bg-gray-200 h-64' src={service.image} alt="" />
+                            <Link to={`/services/${service._id}`} key={service._id} className='p-4 cursor-pointer'>  
+                                <img className='cursor-pointer w-full bg-gray-200 h-64' src={service.image} alt="" />
                                 <div className='mt-3'>
                                     <h1 className='text-xl font-semibold'>{service.title}</h1>
-                                    <p className='my-2 text-sm '>{service.des}</p>
+                                    <p className='my-2 text-sm '>{service.des.slice(0, 100)}...</p>
                                     <div className='flex items-center gap-1 mb-1'>
                                         <div className={` ${service.review ? 'bg-green-500': 'bg-transparent'} w-3 h-3 rounded-full border-2 border-green-500 `}></div>
                                         <div className={` ${service.review ? 'bg-green-500': 'bg-transparent'} w-3 h-3  rounded-full border-2 border-green-500 `}></div>
@@ -33,7 +33,7 @@ const Services = () => {
                                     </div>
                                     <p className='font-semibold text-base'>form <span className='font-bold'>${service.price}</span> per adult</p>
                                 </div>
-                            </div>
+                            </Link>
                         )
                     })
                 }

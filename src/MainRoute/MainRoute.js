@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AddService from '../pages/AddService';
+import DetailsServ from '../pages/DetailsServ';
 import Home from '../pages/Home';
 import Layout from '../pages/Layout';
 import Login from '../pages/Login';
@@ -23,6 +24,10 @@ const MainRoute = () => {
                 {
                     path: '/addservice',
                     element:<AddService></AddService>
+                },
+                {
+                    path: '/services/:id',
+                    element:<DetailsServ></DetailsServ>
                 },
                 {
                     path: '/services',
