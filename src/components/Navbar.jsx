@@ -11,10 +11,10 @@ const Navbar = () => {
                   </Link>
 		<ul className="items-stretch hidden space-x-3 lg:flex">
 			<li className="flex">
-				<Link className="font-medium flex items-center px-4 -mb-1 border-b-2 border-transparent text-black">Home</Link>
+				<Link to='/' className="font-medium flex items-center px-4 -mb-1 border-b-2 border-transparent text-black">Home</Link>
 			</li>
 			<li className="flex">
-				<Link className="font-medium flex items-center px-4 -mb-1 border-b-2 border-transparent">Services</Link>
+				<Link to='/services' className="font-medium flex items-center px-4 -mb-1 border-b-2 border-transparent">Services</Link>
 			</li>
 			<li className="flex">
 				<Link className="font-medium flex items-center px-4 -mb-1 border-b-2 border-transparent">Blog</Link>

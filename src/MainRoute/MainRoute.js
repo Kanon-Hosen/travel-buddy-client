@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AddService from '../pages/AddService';
 import Home from '../pages/Home';
 import Layout from '../pages/Layout';
 import Login from '../pages/Login';
@@ -18,6 +19,10 @@ const MainRoute = () => {
                 {
                     path: '/',
                     element:<Home></Home>
+                },
+                {
+                    path: '/addservice',
+                    element:<AddService></AddService>
                 },
                 {
                     path: '/services',
