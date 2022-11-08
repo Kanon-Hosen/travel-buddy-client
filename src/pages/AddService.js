@@ -3,16 +3,16 @@ import { useNavigate } from 'react-router';
 
 const AddService = () => {
     const navigate = useNavigate();
+
     const handlePost = (e) => {
         e.preventDefault();
         const title = e.target.title.value;
         const des = e.target.description.value;
         const image = e.target.image.value;
         const price = e.target.price.value;
-        const reveiw = [];
-        const service = { title, des, price, image, reveiw };
+        const service = { title, des, price, image };
         try {
-            fetch('http://localhost:5000/services', {
+            fetch('http://localhost:5000/services/', {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
