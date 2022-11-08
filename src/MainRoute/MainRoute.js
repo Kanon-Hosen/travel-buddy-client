@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AddService from '../pages/AddService';
 import Blog from '../pages/Blog';
 import DetailsServ from '../pages/DetailsServ';
+import EditReview from '../pages/EditReview';
 import Home from '../pages/Home';
 import Layout from '../pages/Layout';
 import Login from '../pages/Login';
@@ -39,6 +40,10 @@ const MainRoute = () => {
                 {
                     path: '/:id/writereview',
                     element:<WriteReview></WriteReview>
+                },
+                {
+                    path: '/editreview/:id',
+                    element:<EditReview></EditReview>
                 },
                 {
                     path: '/services/:id',
