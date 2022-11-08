@@ -9,7 +9,8 @@ const AddService = () => {
         const des = e.target.description.value;
         const image = e.target.image.value;
         const price = e.target.price.value;
-        const service = { title, des, price, image };
+        const reveiw = [];
+        const service = { title, des, price, image, reveiw };
         try {
             fetch('http://localhost:5000/services', {
                 method: "POST",
