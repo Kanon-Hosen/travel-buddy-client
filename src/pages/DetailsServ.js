@@ -12,13 +12,14 @@ const DetailsServ = () => {
   const [service, setService] = useState({});
   const [user, loading] = useAuthState(auth);
   const [reviews, setReview] = useState([]);
+  const [refres, setRefres] = useState();
   console.log("🚀 ~ file: DetailsServ.js ~ line 15 ~ DetailsServ ~ reviews", reviews)
   const location = useLocation();
   useEffect(() => {
     fetch(`http://localhost:5000/review/${id}`)
       .then((res) => res.json())
       .then((data) => setReview(data));
-  }, [id]);
+  }, [id, refres]);
 
   useEffect(() => {
     fetch(`http://localhost:5000/services/${id}`)
@@ -58,6 +59,21 @@ const DetailsServ = () => {
     );
   }
 
+  const handleDelete = (id) => {
+    const procced = window.confirm('Delete your review');
+
+    if (procced) {
+      fetch(`http://localhost:5000/review/${id}`, {
+        method: "DELETE"
+      }).then(res => res.json())
+        .then(() => {
+        setRefres(!refres)
+      })
+    } else {
+      return;
+    }
+  }
+
   return (
     <div>
       <div className="flex gap-5 my-5 w-full justify-between">
@@ -71,6 +87,11 @@ const DetailsServ = () => {
               className={` ${
                 review[0]?._id ? "bg-green-500" : "bg-transparent"
               } w-5 h-5 rounded-full border-2 border-green-500 `}
+            ></div>
+            <div
+              className={` ${
+                review[0]?._id ? "bg-green-500" : "bg-transparent"
+              } w-5 h-5  rounded-full border-2 border-green-500 `}
             ></div>
             <div
               className={` ${
@@ -172,7 +193,7 @@ const DetailsServ = () => {
                               <Link to={`/editreview/${r._id}`} state={{from: location}} className="font-semibold text-base hover:underline transition-colors cursor-pointer">
                                 Edit
                               </Link>
-                              <p className="font-semibold text-base hover:underline transition-colors cursor-pointer">
+                              <p onClick={()=> handleDelete(r._id)} className="font-semibold text-base hover:underline transition-colors cursor-pointer">
                                 Delete
                               </p>
                             </div>

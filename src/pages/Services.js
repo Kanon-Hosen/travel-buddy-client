@@ -33,9 +33,6 @@ const Services = () => {
     }
     return (
         <div className='my-5'>
-            <div>
-                <Link to='/addservice' className='px-5 py-3 cursor-pointer bg-black text-gray-50 rounded-full'>Add service</Link>
-            </div>
             <div className='my-7 grid grid-cols-3 gap-6'>
                 {
                     services.map(service => {
