@@ -143,7 +143,7 @@ const DetailsServ = () => {
           ) : (
             <div className="">
               <h1 className="text-3xl font-semibold my-4">
-                You need to Sign in first
+                Please login to add a review
               </h1>
               <Link
                 to="/login"

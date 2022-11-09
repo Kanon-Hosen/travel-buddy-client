@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../config/Firebase';
 const Register = () => {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
     const navigate = useNavigate();
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -29,6 +30,7 @@ const Register = () => {
                 console.log(err.message);
                 e.target.reset();
                 setLoading(false);
+                setError(err.message)
         })
     }
     // google::::::::::::::::::::
@@ -64,7 +66,8 @@ const Register = () => {
                         <label htmlFor="Email">Email</label>
                         <input name='email' className='border p-3 border-gray-500 rounded mb-2' type="email" required placeholder='Enter your email' />
                         <label htmlFor="password">Password</label>
-                        <input name='password' className='border p-3 border-gray-500 rounded mb-5' type="password"required placeholder='Enter your password' />
+                        <input name='password' className='border p-3 border-gray-500 rounded mb-5' type="password" required placeholder='Enter your password' />
+                        <p>{error}</p>
                         <button type="submit" className='btn bg-green-500 px-4 py-4 text-white font-semibold text-base border-none rounded'>Sign up</button>
                     </form>
                     <p className='text-center mt-5 font-semibold'>Or register with </p>

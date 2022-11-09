@@ -8,9 +8,11 @@ import EditService from '../pages/EditService';
 import Home from '../pages/Home';
 import Layout from '../pages/Layout';
 import Login from '../pages/Login';
+import MyReview from '../pages/MyReview';
 import Register from '../pages/Register';
 import Services from '../pages/Services';
 import WriteReview from '../pages/WriteReview';
+import PrivateRoute from '../privateRoute/PrivateRoute';
 
 const MainRoute = () => {
     const router = createBrowserRouter([
@@ -32,7 +34,7 @@ const MainRoute = () => {
                 },
                 {
                     path: '/addservice',
-                    element:<AddService></AddService>
+                    element:<PrivateRoute><AddService></AddService></PrivateRoute>
                 },
                 {
                     path: '/blog',
@@ -40,15 +42,19 @@ const MainRoute = () => {
                 },
                 {
                     path: '/:id/writereview',
-                    element:<WriteReview></WriteReview>
+                    element:<PrivateRoute><WriteReview></WriteReview></PrivateRoute>
                 },
                 {
                     path: '/editservice/:id',
-                    element:<EditService></EditService>
+                    element:<PrivateRoute><EditService></EditService></PrivateRoute>
+                },
+                {
+                    path: '/myreview',
+                    element:<PrivateRoute><MyReview></MyReview></PrivateRoute>
                 },
                 {
                     path: '/editreview/:id',
-                    element:<EditReview></EditReview>
+                    element:<PrivateRoute><EditReview></EditReview></PrivateRoute>
                 },
                 {
                     path: '/services/:id',

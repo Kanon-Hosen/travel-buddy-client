@@ -1,11 +1,14 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import React from 'react';
 import { useState } from 'react';
 import {BsGoogle, BsFacebook} from 'react-icons/bs'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../config/Firebase';
 const Login = () => {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const navigate = useNavigate();
 
     const handleLogin = (e) => {
@@ -15,15 +18,40 @@ const Login = () => {
         const password = e.target.password.value;
 
         signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                console.log('Login successfully');
+            .then((user) => {
+                console.log(user);
                 setLoading(false)
                 e.target.reset();
-                navigate('/')
+                const currentUser = {email:user.user.email}
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body:JSON.stringify(currentUser)
+                     
+                })
+                .then(res => res.json())
+                .then(data => {
+                localStorage.setItem('adviserToken', data.token)
+            })
+                navigate(from, { replace: true })
+                
             }).catch(err => {
                 console.log(err.message);
                 setLoading(false)
                 e.target.reset();
+                setError(err.message)
+        })
+    }
+    // Google sign in:::::::::::::::
+    const googleLogin = () => {
+        const provider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, provider)
+            .then(() => {
+                navigate(from, {replace : true})
+            console.log("sign up successfully")
         })
     }
     return (
@@ -44,12 +72,13 @@ const Login = () => {
                         <label htmlFor="Email">Email</label>
                         <input name='email' className='border p-3 border-gray-500 rounded mb-2' type="email" required placeholder='Enter your email' />
                         <label htmlFor="password">Password</label>
-                        <input name='password' className='border p-3 border-gray-500 rounded mb-5' type="password"required placeholder='Enter your password' />
+                        <input name='password' className='border p-3 border-gray-500 rounded mb-5' type="password" required placeholder='Enter your password' />
+                        <p className='text-red-500 text-sm my-1'>{error}</p>
                         <button type="submit" className='btn px-5 py-4 text-base font-semibold text-white bg-green-500 border-none rounded'>Sign in</button>
                     </form>
                     <p className='text-center mt-5 font-semibold'>Or login with </p>
                     <div className='mt-3 flex items-center justify-center gap-8'>
-                        <div className='flex items-center text-base font-semibold gap-1 cursor-pointer hover:text-green-500 transition-colors'>
+                        <div onClick={googleLogin} className='flex items-center text-base font-semibold gap-1 cursor-pointer hover:text-green-500 transition-colors'>
                             <BsGoogle></BsGoogle>
                             <p>Google</p>
                         </div>

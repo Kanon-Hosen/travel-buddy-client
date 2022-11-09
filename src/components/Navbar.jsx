@@ -28,6 +28,11 @@ const Navbar = () => {
 			<li className="flex">
 				<Link to='/blog' className="font-medium flex items-center px-4 -mb-1 border-b-2 border-transparent">Blog</Link>
 			</li>
+					  {
+						  user ? <li className="flex">
+						  <Link to='/myreview' className="font-medium flex items-center px-4 -mb-1 border-b-2 border-transparent">My review</Link>
+					  </li>: ''
+			}
 		</ul>
 				  {
 					  user ? <div className="flex gap-4 items-center text-gray-50">
