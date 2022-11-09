@@ -6,12 +6,15 @@ import {FiEdit2} from 'react-icons/fi'
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../config/Firebase';
+import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+
 const Services = () => {
     const [user] = useAuthState(auth)
     const [services, setServices] = useState([]);
     const [refres, setRefres] = useState(false);
     useEffect(() => {
-        fetch("http://localhost:5000/services")
+        fetch("http://localhost:5000/servicesall")
             .then(res => res.json())
             .then(data => setServices(data.data))
     }, [refres])
@@ -21,7 +24,7 @@ const Services = () => {
         const proced = window.confirm("Delete Service");
 
         if (proced) {
-            fetch(`http://localhost:5000/service/${id}`, {
+            fetch(`http://localhost:5000/servicesall/${id}`, {
                 method:"DELETE"
             }).then(res => res.json())
                 .then(() => {
@@ -38,7 +41,11 @@ const Services = () => {
                     services.map(service => {
                         return (
                             <Link  key={service._id} className='p-4 h-full hover:shadow'>  
-                                <img className='cursor-pointer w-full bg-gray-200 h-64' src={service.image} alt="" />
+                                <PhotoProvider>
+                                    <PhotoView src={service.image}>
+                                    <img className='cursor-pointer w-full bg-gray-200 h-64' src={service.image} alt="" />
+                                    </PhotoView>
+                                </PhotoProvider>           
                                 <div className='mt-3'>
                                     <h1 className='text-xl font-semibold'>{service.title}</h1>
                                     <p className='my-2 text-sm '>{service.des.slice(0, 100)}...</p>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import 'react-photo-view/dist/react-photo-view.css';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const Services = () => {
     const [services, setServices] = useState([]);
@@ -23,11 +25,16 @@ const Services = () => {
               key={service._id}
               className=" cursor-pointer hover:shadow transition-shadow h-fit p-4 overflow-hidden"
             >
+              <PhotoProvider>
+                <PhotoView src={service.image}>
               <img
                 className="w-full bg-gray-200 h-64"
                 src={service.image}
                 alt=""
-              />
+                    />
+                  </PhotoView>
+                </PhotoProvider>
+
               <div className="mt-3 p-3">
                 <h1 className="text-xl font-semibold hover:underline transition-all">
                   {service.title}
@@ -48,7 +55,7 @@ const Services = () => {
           );
         })}
           </div>
-          <div className="text-center mt-16">
+          <div className="text-center my-4">
           <Link to='/services' className="px-8 border-2 border-black  py-3 hover:bg-black rounded-full text-black font-semibold hover:text-gray-50 transition-all">See all</Link>
         </div>
     </div>
