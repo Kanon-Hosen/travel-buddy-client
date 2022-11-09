@@ -55,10 +55,10 @@ const WriteReview = () => {
   };
   return (
     <div className="my-10">
-      <div className="flex items-center justify-between gap-5">
-        <img className="w-56" src={service.image} alt="" />
+      <div className="flex flex-col md:flex-row items-center justify-between gap-5">
+        <img className="md:w-56 w-full" src={service.image} alt="" />
         <div>
-          <h1 className="text-base font-semibold my-4">{service.title}</h1>
+          <h1 className="md:text-base text-xl font-semibold my-4">{service.title}</h1>
           <p className="text-sm">{service.des}</p>
         </div>
       </div>

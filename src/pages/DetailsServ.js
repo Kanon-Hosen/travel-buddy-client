@@ -77,11 +77,11 @@ const DetailsServ = () => {
 
   return (
     <div>
-      <div className="flex gap-5 my-5 w-full justify-between">
-        <div className="w-1/2">
+      <div className="flex flex-col md:flex-row gap-5 my-5 w-full justify-between">
+        <div className="md:w-1/2 w-full">
           <img className="w-full" src={service.image} alt="" />
         </div>
-        <div className="w-1/2">
+        <div className="md:w-1/2 w-full">
           <h1 className="text-2xl font-bold text-black">{service.title}</h1>
           <div className="flex items-center gap-1 my-4">
             <div

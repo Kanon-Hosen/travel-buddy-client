@@ -10,7 +10,7 @@ const Contact = () => {
 			<h2 className="text-4xl font-bold leading-tight lg:text-5xl">Let's talk!</h2>
 			<div className="text-gray-400">Vivamus in nisl metus? Phasellus.</div>
 		</div>
-		<img src="assets/svg/doodle.svg" alt="" className="p-6 h-52 md:h-64" />
+		<img src="https://img.freepik.com/premium-vector/freelancer-happy-young-men-working-illustration-guy-sitting-with-computer-using-laptop-studying-doing-network-inside-house-flat-style_311563-120.jpg?w=2000" alt="" className="p-6 h-80 md:h-80" />
 	</div>
 	<form novalidate="" className="space-y-6 ng-untouched ng-pristine ng-valid">
 		<div>
