@@ -49,7 +49,7 @@ const Services = () => {
                                 <div className='mt-3'>
                                     <h1 className='text-xl font-semibold'>{service.title}</h1>
                                     <p className='my-2 text-sm '>{service.des.slice(0, 100)}...</p>
-                                    <p className='font-semibold text-base'>form <span className='font-bold'>${service.price}</span> per adult</p>
+                                    <p className='font-semibold text-base'>form <span className='font-bold'>${service.price}</span> per day</p>
                                 </div>
                                 <Link to={`/services/${service._id}`}><button className="mt-5 px-4 py-3 bg-green-500 text-white font-semibold rounded-full text-sm">View details</button></Link>
                                 {

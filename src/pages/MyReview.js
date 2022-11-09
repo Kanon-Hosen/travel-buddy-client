@@ -1,3 +1,4 @@
+import { signOut } from "firebase/auth";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -12,8 +13,20 @@ const MyReview = () => {
   console.log("🚀 ~ file: MyReview.js ~ line 9 ~ MyReview ~ reviews", reviews);
   const [user] = useAuthState(auth);
   useEffect(() => {
-    fetch(`http://localhost:5000/myreview?name=${user?.displayName}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/myreview?name=${user?.displayName}&email=${user.email}`, {
+      headers: {
+        authorization:`Bearer ${localStorage.getItem('adviserToken')}`
+      }
+    })
+      .then((res) => {
+        if (res.status === 403 || res.status === 401) {
+          signOut(auth)
+            .then(() => {
+            
+          })
+        }
+        return res.json()
+      })
       .then((data) => {
         setReviews(data);
       });
