@@ -17,7 +17,7 @@ const Navbar = () => {
 			  loading ? <div className="text-center bg-white font-semibold flex items-center justify-center h-full w-full z-50 shadow"><p>Please wait a secound loading user...</p></div> :
 			  <header className="  bg-white text-gray-900 px-8 md:px-16 shadow ">
               <div className="container flex justify-between h-16 mx-auto">
-                  <Link className="flex h-full items-center text-xl">
+                  <Link to='/' className="flex h-full items-center text-xl">
                       <p className="font-semibold "><span className="text-green-500">Travel</span> buddy</p>
                   </Link>
 		<ul className="items-stretch hidden space-x-3 lg:flex">

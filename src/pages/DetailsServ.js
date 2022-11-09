@@ -121,7 +121,7 @@ const DetailsServ = () => {
               Checkout
             </button>
           </div>
-          <p className="-mt-1 text-gray-600">per adult</p>
+          <p className="-mt-1 text-gray-600">per day</p>
         </div>
       </div>
 
