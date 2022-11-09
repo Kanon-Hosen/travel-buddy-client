@@ -4,6 +4,8 @@ import { BsFacebook, BsGoogle } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../config/Firebase';
 const Register = () => {
+document.title = "Register"
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
     const navigate = useNavigate();

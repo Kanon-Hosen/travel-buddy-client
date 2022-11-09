@@ -5,6 +5,7 @@ import {BsGoogle, BsFacebook} from 'react-icons/bs'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../config/Firebase';
 const Login = () => {
+document.title = "Login"
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
     const location = useLocation();

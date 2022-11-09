@@ -6,7 +6,7 @@ const Faq = () => {
       <section className=" text-gray-900">
         <div className="container flex flex-col justify-center p-4 mx-auto ">
           <p className="p-2 text-sm font-medium tracking-wider text-center uppercase">
-            Asked me some qustions
+            qustions
           </p>
           <h2 className="mb-12 text-4xl font-bold leading-none text-center sm:text-5xl">
             Frequently Asked Questions

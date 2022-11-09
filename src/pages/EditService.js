@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 const EditService = () => {
+  document.title = "Edit Service";
+
     const [service, setService] = useState({});
     const navigate = useNavigate()
   const { id } = useParams();

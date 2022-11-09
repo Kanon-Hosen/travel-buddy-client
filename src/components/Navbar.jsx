@@ -12,11 +12,13 @@ const Navbar = () => {
 		})
 	}
   return (
-      <div className=''>
-          <header className="  bg-white text-gray-900 px-8 md:px-16 shadow ">
+      <div className='h-16 w-full z-50 bg-white'>
+		  {
+			  loading ? <div className="text-center bg-white font-semibold flex items-center justify-center h-full w-full z-50 shadow"><p>Please wait a secound loading user...</p></div> :
+			  <header className="  bg-white text-gray-900 px-8 md:px-16 shadow ">
               <div className="container flex justify-between h-16 mx-auto">
                   <Link className="flex h-full items-center text-xl">
-                      <p>Travel advisor</p>
+                      <p className="font-semibold "><span className="text-green-500">Travel</span> buddy</p>
                   </Link>
 		<ul className="items-stretch hidden space-x-3 lg:flex">
 			<li className="flex">
@@ -36,6 +38,9 @@ const Navbar = () => {
 		</ul>
 				  {
 					  user ? <div className="flex gap-4 items-center text-gray-50">
+						  <div>
+							  <img title={user.displayName} className="w-12 cursor-pointer h-12 rounded-full mr-2" src={user.photoURL} alt="" />
+						  </div>
 						  <Link to='/addservice' className="bg-green-500 px-4 py-3 rounded-full text-sm">Add service</Link>
 						  <button onClick={handleLogout} className=" bg-black px-4 py-3 rounded-full text-sm">Sign out</button>
 					  </div> : <div className="items-center flex-shrink-0 hidden lg:flex">
@@ -49,6 +54,7 @@ const Navbar = () => {
 		</button>
 	</div>
 </header>
+		}
     </div>
   );
 };

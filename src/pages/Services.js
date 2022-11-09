@@ -10,6 +10,8 @@ import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const Services = () => {
+  document.title = "Services";
+
     const [user] = useAuthState(auth)
     const [services, setServices] = useState([]);
     const [refres, setRefres] = useState(false);

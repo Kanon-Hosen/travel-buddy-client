@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router';
 import { auth } from '../config/Firebase';
 
 const EditReview = () => {
+  document.title = "Edit review";
     const { id } = useParams()
     const [user] = useAuthState(auth)
     const navigate = useNavigate();

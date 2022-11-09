@@ -2,10 +2,16 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { auth } from "../config/Firebase";
 
 const WriteReview = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || '/';
+  document.title = "Write Review";
+  
+
   const { id } = useParams();
   const [service, setService] = useState({});
   const [user] = useAuthState(auth);
@@ -40,7 +46,9 @@ const WriteReview = () => {
           "content-type": "application/json",
         },
         body: JSON.stringify(review),
-      });
+      }).then(() => {
+        navigate(from, {replace:true})
+      })
     } catch (error) {
       console.log(error.message);
     }

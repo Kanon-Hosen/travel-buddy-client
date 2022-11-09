@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { auth } from "../config/Firebase";
 
 const DetailsServ = () => {
+  document.title = "Details service"
   const { id } = useParams();
   const [service, setService] = useState({});
   const [user, loading] = useAuthState(auth);
@@ -132,7 +133,7 @@ const DetailsServ = () => {
                 <div>
                   <h1 className="my-10 text-3xl font-semibold">Contribute</h1>
                   <Link
-                    to={`/${id}/writereview`}
+                    to={`/${id}/writereview`} state={{from: location}}
                     className="border-black border-2 px-5 py-4 rounded-full text-black font-semibold my-6 hover:bg-black hover:text-gray-50 transition-colors"
                   >
                     Write a review
@@ -220,7 +221,7 @@ const DetailsServ = () => {
                 No reviews yet. Be the first to share your thoughts!
               </p>
               <Link
-                to={`/${id}/writereview`}
+                to={`/${id}/writereview`} state={{from: location}}
                 className="bg-black text-gray-50 px-5 py-3 rounded-full"
               >
                 Write a review

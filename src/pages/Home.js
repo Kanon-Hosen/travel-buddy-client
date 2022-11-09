@@ -5,6 +5,8 @@ import Hero from '../components/Hero';
 import Services from '../components/Services';
 
 const Home = () => {
+  document.title = "Home";
+
     return (
         <div>
             <Hero></Hero>
