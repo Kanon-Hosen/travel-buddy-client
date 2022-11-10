@@ -8,7 +8,6 @@ const Navbar = () => {
   const [user, loading] = useAuthState(auth);
   const handleLogout = () => {
     signOut(auth).then(() => {
-      console.log("Log out");
     });
   };
   return (
@@ -18,11 +17,11 @@ const Navbar = () => {
           <p>Please wait a secound...</p>
         </div>
       ) : (
-        <header className="  bg-white text-gray-900 px-8 md:px-16 shadow ">
+        <header className=" bg-white text-gray-900 px-4 md:px-16 shadow ">
           <div className="container flex justify-between h-16 mx-auto">
             <Link
               to="/"
-              className="flex h-full w-48 md:w-auto items-center text-xl"
+              className="flex h-full w-48 md:w-auto items-center text-base md:text-xl"
             >
               <p className="font-semibold ">
                 <span className="text-green-500">Travel</span> buddy
@@ -71,7 +70,7 @@ const Navbar = () => {
                 <div>
                   <img
                     title={user.displayName}
-                    className="w-12 cursor-pointer h-12 rounded-full mr-2"
+                    className="w-10 cursor-pointer h-10 rounded-full mr-2"
                     src={user.photoURL}
                     alt=""
                   />
@@ -84,7 +83,7 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className=" bg-black px-4 py-3 rounded-full text-sm"
+                  className=" bg-black md:px-4 md:py-3 px-3 py-2 rounded-full text-sm"
                 >
                   Sign out
                 </button>
@@ -101,7 +100,7 @@ const Navbar = () => {
             )}
             <button
               onClick={() => setToggle(!toggle)}
-              className="p-4 lg:hidden"
+              className="p-3 lg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -122,9 +121,9 @@ const Navbar = () => {
           <div
             className={`${
               toggle ? "right-0" : "-right-full"
-            }    absolute top-16 -right-full h-full z-50 w-full`}
+            }    absolute top-16 h-full z-50 w-full`}
           >
-            <ul className="flex flex-col gap-7 justify-center items-center  lg:hidden w-1/2 h-full bg-gray-300 z-20">
+            <ul className="flex flex-col gap-7 justify-center items-center  lg:hidden w-1/2 h-full bg-gray-100 z-20">
               <li className="flex">
                 <Link
                   onClick={() => setToggle(!toggle)}

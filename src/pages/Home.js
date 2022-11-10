@@ -5,7 +5,7 @@ import Hero from '../components/Hero';
 import Services from '../components/Services';
 
 const Home = () => {
-  document.title = "Home";
+  document.title = "Travel buddy - Home";
 
     return (
         <div>

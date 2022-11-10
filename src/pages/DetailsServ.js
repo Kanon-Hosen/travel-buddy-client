@@ -8,27 +8,33 @@ import { Link } from "react-router-dom";
 import { auth } from "../config/Firebase";
 
 const DetailsServ = () => {
-  document.title = "Details service"
+  document.title = "Details service";
   const { id } = useParams();
   const [service, setService] = useState({});
   const [user, loading] = useAuthState(auth);
   const [reviews, setReview] = useState([]);
   const [refres, setRefres] = useState();
-  console.log("🚀 ~ file: DetailsServ.js ~ line 15 ~ DetailsServ ~ reviews", reviews)
+  console.log(
+    "🚀 ~ file: DetailsServ.js ~ line 15 ~ DetailsServ ~ reviews",
+    reviews
+  );
   const location = useLocation();
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${id}`)
+    fetch(`https://server-phi-azure.vercel.app/review/${id}`)
       .then((res) => res.json())
       .then((data) => setReview(data));
   }, [id, refres]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${id}`)
+    fetch(`https://server-phi-azure.vercel.app/services/${id}`)
       .then((res) => res.json())
       .then((data) => setService(data));
   }, [id]);
   const review = [...reviews].reverse();
-  console.log("🚀 ~ file: DetailsServ.js ~ line 17 ~ DetailsServ ~ review", review)
+  console.log(
+    "🚀 ~ file: DetailsServ.js ~ line 17 ~ DetailsServ ~ review",
+    review
+  );
 
   // loader added
   if (loading) {
@@ -61,19 +67,20 @@ const DetailsServ = () => {
   }
 
   const handleDelete = (id) => {
-    const procced = window.confirm('Delete your review');
+    const procced = window.confirm("Delete your review");
 
     if (procced) {
-      fetch(`http://localhost:5000/review/${id}`, {
-        method: "DELETE"
-      }).then(res => res.json())
-        .then(() => {
-        setRefres(!refres)
+      fetch(`https://server-phi-azure.vercel.app/review/${id}`, {
+        method: "DELETE",
       })
+        .then((res) => res.json())
+        .then(() => {
+          setRefres(!refres);
+        });
     } else {
       return;
     }
-  }
+  };
 
   return (
     <div>
@@ -133,7 +140,8 @@ const DetailsServ = () => {
                 <div>
                   <h1 className="my-10 text-3xl font-semibold">Contribute</h1>
                   <Link
-                    to={`/${id}/writereview`} state={{from: location}}
+                    to={`/${id}/writereview`}
+                    state={{ from: location }}
                     className="border-black border-2 px-5 py-4 rounded-full text-black font-semibold my-6 hover:bg-black hover:text-gray-50 transition-colors"
                   >
                     Write a review
@@ -191,10 +199,17 @@ const DetailsServ = () => {
                           <p className="mt-4 text-sm ">{r.reviewDes}</p>
                           {user?.displayName === r.username ? (
                             <div className="mt-6 flex items-center gap-7">
-                              <Link to={`/editreview/${r._id}`} state={{from: location}} className="font-semibold text-base hover:underline transition-colors cursor-pointer">
+                              <Link
+                                to={`/editreview/${r._id}`}
+                                state={{ from: location }}
+                                className="font-semibold text-base hover:underline transition-colors cursor-pointer"
+                              >
                                 Edit
                               </Link>
-                              <p onClick={()=> handleDelete(r._id)} className="font-semibold text-base hover:underline transition-colors cursor-pointer">
+                              <p
+                                onClick={() => handleDelete(r._id)}
+                                className="font-semibold text-base hover:underline transition-colors cursor-pointer"
+                              >
                                 Delete
                               </p>
                             </div>
@@ -221,7 +236,8 @@ const DetailsServ = () => {
                 No reviews yet. Be the first to share your thoughts!
               </p>
               <Link
-                to={`/${id}/writereview`} state={{from: location}}
+                to={`/${id}/writereview`}
+                state={{ from: location }}
                 className="bg-black text-gray-50 px-5 py-3 rounded-full"
               >
                 Write a review

@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import { BsFacebook, BsGoogle } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
@@ -44,8 +44,16 @@ document.title = "Register"
             .then(() => {
                 console.log('Success')
                 navigate('/')
+            })
+    };
+
+    const facebookLogin = () => {
+        const fbProvider = new FacebookAuthProvider();
+    
+        signInWithPopup(auth, fbProvider)
+          .then(() => {
         })
-    }
+      }
     return (
         <div className='flex items-center justify-center w-full h-full my-10'>
                         <div className={`${loading ? 'visible' : 'hidden'} absolute top-16 flex items-center justify-center w-full h-screen bg-gray-900 bg-opacity-20`}>
@@ -78,7 +86,7 @@ document.title = "Register"
                             <BsGoogle></BsGoogle>
                             <p>Google</p>
                         </div>
-                        <div className='flex items-center text-base font-semibold gap-1 cursor-pointer hover:text-green-500 transition-colors'>
+                        <div onClick={facebookLogin} className='flex items-center text-base font-semibold gap-1 cursor-pointer hover:text-green-500 transition-colors'>
                             <BsFacebook></BsFacebook>
                             <p>Facebook</p>
                         </div>

@@ -8,16 +8,15 @@ import { auth } from "../config/Firebase";
 const WriteReview = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state?.from?.pathname || '/';
+  const from = location?.state?.from?.pathname || "/";
   document.title = "Write Review";
-  
 
   const { id } = useParams();
   const [service, setService] = useState({});
   const [user] = useAuthState(auth);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${id}`)
+    fetch(`https://server-phi-azure.vercel.app/services/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setService(data);
@@ -40,15 +39,15 @@ const WriteReview = () => {
       reviewSerId: id,
     };
     try {
-      fetch(`http://localhost:5000/review`, {
+      fetch(`https://server-phi-azure.vercel.app/review`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify(review),
       }).then(() => {
-        navigate(from, {replace:true})
-      })
+        navigate(from, { replace: true });
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -58,7 +57,9 @@ const WriteReview = () => {
       <div className="flex flex-col md:flex-row items-center justify-between gap-5">
         <img className="md:w-56 w-full" src={service.image} alt="" />
         <div>
-          <h1 className="md:text-base text-xl font-semibold my-4">{service.title}</h1>
+          <h1 className="md:text-base text-xl font-semibold my-4">
+            {service.title}
+          </h1>
           <p className="text-sm">{service.des}</p>
         </div>
       </div>
